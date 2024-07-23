@@ -10,41 +10,22 @@ const listingSchema = new Schema({
     description: String,
     image: {
         type: String,
-        default: "https://unsplash.com/photos/silhouette-of-trees-during-sunset-PAnGAiaSPh0",
+        default: "https://images.unsplash.com/photo-1720292770182-5fd47810f32c?q=80&w=1876&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         set: (v) => 
             v === "" 
-                ? "https://unsplash.com/photos/silhouette-of-trees-during-sunset-PAnGAiaSPh0" 
+                ? "https://images.unsplash.com/photo-1720292770182-5fd47810f32c?q=80&w=1876&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
                 : v,
     },
     price: Number,
     location: String,
     country: String,
+    reviews: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Reviews",
+        },
+    ],
 });
 
 const Listing = mongoose.model("Listing", listingSchema);
 module.exports =Listing;
-
-
-// const mongoose = require("mongoose");
-// const Schema = mongoose.Schema;
-
-// const listingSchema = new Schema({
-//     title: {
-//         type:String,
-//         required: true,
-//     },
-//     description: String,
-//     image: {
-//         type: String,
-//         set: (v) => 
-//             v === "" 
-//                 ? "https://images.unsplash.com/photo-1476860184138-af609b4e8a3a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-//                 : v,
-//     },
-//     price: Number,
-//     location: String,
-//     country: String
-// });
-
-// const Listing = mongoose.model("Listing", listingSchema);
-// module.exports = Listing;    
